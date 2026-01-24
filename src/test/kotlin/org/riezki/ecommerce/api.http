@@ -1,0 +1,66 @@
+###
+# get all products
+GET http://localhost:8080/api/v1/products
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIxMjM0NSIsImlhdCI6MTc2ODExNDUxNywiZXhwIjoxNzczMjk4NTE3fQ._4joRftjw_3FWgTYZTuOseOhZZfo4xkPmnJCw9uwYgDDOlVYNhq_jATujIkSEroA
+
+###
+# pagination test page 3 size 5
+GET http://localhost:8080/api/v1/products?page=3&size=5
+Accept: application/json
+
+###
+# get products by search
+GET http://localhost:8080/api/v1/products?q=Adjustable
+Accept: application/json
+
+###
+# get products by category
+GET http://localhost:8080/api/v1/products?categoryId=18
+Accept: application/json
+
+###
+# get products by search and category
+GET http://localhost:8080/api/v1/products?q=port&categoryId=1
+Accept: application/json
+
+###
+# pagination test page 0
+GET http://localhost:8080/api/v1/products?page=0
+Accept: application/json
+
+###
+# register new user
+POST http://localhost:8080/api/v1/auth/register
+Content-Type: application/json
+Accept: application/json
+
+{
+    "phoneNumber": "12345",
+    "name": "New User 2",
+    "password": "pwd"
+}
+
+###
+# login user
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+Accept: application/json
+
+{
+    "phoneNumber": "12345",
+    "password": "pwd"
+}
+
+###
+#get all users
+GET http://localhost:8080/api/v1/users
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIxMjM0NSIsImlhdCI6MTc2ODExNDUxNywiZXhwIjoxNzczMjk4NTE3fQ._4joRftjw_3FWgTYZTuOseOhZZfo4xkPmnJCw9uwYgDDOlVYNhq_jATujIkSEroA
+
+###
+# Sort products by price dess/asc
+GET http://localhost:8080/api/v1/products?sort=price_desc
+Accept: application/json
+###
