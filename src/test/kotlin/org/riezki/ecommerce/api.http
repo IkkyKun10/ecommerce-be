@@ -36,8 +36,8 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "phoneNumber": "12345",
-    "name": "New User 2",
+    "phoneNumber": "4321",
+    "name": "New User 3",
     "password": "pwd"
 }
 
@@ -48,7 +48,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "phoneNumber": "12345",
+    "phoneNumber": "4321",
     "password": "pwd"
 }
 
@@ -57,10 +57,44 @@ Accept: application/json
 GET http://localhost:8080/api/v1/users
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIxMjM0NSIsImlhdCI6MTc2ODExNDUxNywiZXhwIjoxNzczMjk4NTE3fQ._4joRftjw_3FWgTYZTuOseOhZZfo4xkPmnJCw9uwYgDDOlVYNhq_jATujIkSEroA
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiI0MzIxIiwiaWF0IjoxNzY5MzQzNDA0LCJleHAiOjE3NzQ1Mjc0MDR9.cmJH8l2DjYkaqspgo9FNlO2E6O6gamlDX8tZOAEjb84lXtLwaGMh26G80zAxCwJN
 
 ###
 # Sort products by price dess/asc
 GET http://localhost:8080/api/v1/products?sort=price_desc
 Accept: application/json
+###
+
+# add chart
+POST http://localhost:8080/api/v1/carts
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiI0MzIxIiwiaWF0IjoxNzY5MzQzNDA0LCJleHAiOjE3NzQ1Mjc0MDR9.cmJH8l2DjYkaqspgo9FNlO2E6O6gamlDX8tZOAEjb84lXtLwaGMh26G80zAxCwJN
+
+{
+  "productId": 47,
+  "quantity": 5
+}
+
+###
+
+
+# get charts
+GET http://localhost:8080/api/v1/carts
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiI0MzIxIiwiaWF0IjoxNzY5MzQzNDA0LCJleHAiOjE3NzQ1Mjc0MDR9.cmJH8l2DjYkaqspgo9FNlO2E6O6gamlDX8tZOAEjb84lXtLwaGMh26G80zAxCwJN
+
+###
+
+# Delete chart
+DELETE http://localhost:8080/api/v1/carts
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiI0MzIxIiwiaWF0IjoxNzY5MzQzNDA0LCJleHAiOjE3NzQ1Mjc0MDR9.cmJH8l2DjYkaqspgo9FNlO2E6O6gamlDX8tZOAEjb84lXtLwaGMh26G80zAxCwJN
+
+{
+  "productId": 199,
+  "quantity": 1
+}
+
 ###

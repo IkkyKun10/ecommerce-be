@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository
 @Repository
 interface CartRepository : JpaRepository<CartEntity, Int> {
 
-    fun findAllByUserId(
+    fun findAllByUserIdOrderByCreatedAtDesc(
         userId: Int,
         pageable: Pageable
     ): Page<CartEntity>

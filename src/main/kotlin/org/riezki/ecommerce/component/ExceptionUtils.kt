@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServletResponse
 import org.riezki.ecommerce.data.dto.BaseResponse
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Component
-import java.sql.Date
+import java.time.Instant
 
 @Component
 class ExceptionUtils {
@@ -23,7 +23,7 @@ class ExceptionUtils {
         }
 
         val data = mapOf(
-            "timestamp" to Date(System.currentTimeMillis()).toInstant().toString(),
+            "timestamp" to Instant.now(),
             "error" to exception.message,
             "path" to request.servletPath
         )

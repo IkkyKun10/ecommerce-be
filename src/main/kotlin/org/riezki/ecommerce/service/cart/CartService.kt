@@ -27,7 +27,7 @@ class CartService(
             .authentication
             .principal as CustomUserDetails
         val userId = customUserDetails.id
-        val carts = cartRepository.findAllByUserId(userId, pageable).toList()
+        val carts = cartRepository.findAllByUserIdOrderByCreatedAtDesc(userId, pageable).toList()
 
         val amount = carts.sumOf { it.product.price * it.quantity }
         val roundedAmount = roundPrice(amount)

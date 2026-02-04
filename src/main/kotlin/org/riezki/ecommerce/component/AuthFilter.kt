@@ -13,7 +13,8 @@ import org.springframework.web.filter.OncePerRequestFilter
 @Component
 class AuthFilter(
     private val jwtUtils: JwtUtils,
-    private val customUserDetailService: CustomUserDetailService
+    private val customUserDetailService: CustomUserDetailService,
+    private val exceptionUtils: ExceptionUtils
 ) : OncePerRequestFilter() {
 
     override fun doFilterInternal(
@@ -56,6 +57,7 @@ class AuthFilter(
             filterChain.doFilter(request, response)
         } catch (e: Exception) {
             println("Error ----------> ${e.message}")
+            exceptionUtils.sendExceptionEntryPoint(request, response, e)
         }
     }
 }

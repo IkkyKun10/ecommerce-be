@@ -23,6 +23,8 @@ class SecurityConfig(
         "/api/v1/auth/register",
         "/api/v1/products",
         "/api/v1/categories",
+        "/error",
+        "/api/v1/orders/webhook"
     )
 
     @Bean
