@@ -37,7 +37,7 @@ class OrderService(
 ) {
 
     fun getOrders(page: Int, size: Int): PagingInfo<OrderEntity> {
-        val userId = jwtUtils.userId
+        val userId = jwtUtils.userId()
         val pageNumber = if (page < 1) 1 else page
         val pageRequest = PageRequest.of(pageNumber - 1, size)
         val orders = orderRepository.findAllByUserId(userId, pageRequest)
@@ -45,7 +45,7 @@ class OrderService(
     }
 
     fun createOrder(idAsString: String): OrderEntity {
-        val userId = jwtUtils.userId
+        val userId = jwtUtils.userId()
 
         val productIds = idAsString.split(",").map { it.trim().toInt() }
         val cartEntities = productIds.map { cartRepository.findByUserIdAndProductId(userId, it) }

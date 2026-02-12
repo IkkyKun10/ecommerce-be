@@ -56,7 +56,7 @@ class JwtUtils(
             .compact()
     }
 
-    val userId = (SecurityContextHolder
+    fun userId() = (SecurityContextHolder
         .getContext()
         .authentication
         .principal as CustomUserDetails).id
