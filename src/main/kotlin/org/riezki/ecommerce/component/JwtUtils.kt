@@ -5,7 +5,9 @@ import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.io.Decoders
 import io.jsonwebtoken.security.Keys
 import org.riezki.ecommerce.data.entity.UserEntity
+import org.riezki.ecommerce.data.utils.CustomUserDetails
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
 import java.util.Date
@@ -16,12 +18,12 @@ class JwtUtils(
     @param:Value("\${jwt.secret}") private val secret: String
 ) {
 
-    fun secretKey() : SecretKey {
+    fun secretKey(): SecretKey {
         val bytes = Decoders.BASE64URL.decode(secret)
         return Keys.hmacShaKeyFor(bytes)
     }
 
-    fun extractAllClaims(token: String) : Claims {
+    fun extractAllClaims(token: String): Claims {
         return Jwts.parser()
             .verifyWith(secretKey())
             .build()
@@ -29,22 +31,22 @@ class JwtUtils(
             .payload
     }
 
-    fun <T> extractClaim(token: String, resolver: (Claims) -> T) : T {
+    fun <T> extractClaim(token: String, resolver: (Claims) -> T): T {
         val claims = extractAllClaims(token)
         return resolver(claims)
     }
 
-    private fun isTokenExpired(token: String) : Boolean {
+    private fun isTokenExpired(token: String): Boolean {
         val expiration = extractClaim(token) { it.expiration }
         return expiration.before(Date())
     }
 
-    fun isValidToken(token: String, userDetails: UserDetails) : Boolean {
+    fun isValidToken(token: String, userDetails: UserDetails): Boolean {
         val phoneNumber = extractClaim(token) { it.subject }
         return phoneNumber == userDetails.username && !isTokenExpired(token)
     }
 
-    fun generateToken(userEntity: UserEntity) : String {
+    fun generateToken(userEntity: UserEntity): String {
         val expiration = 1000L * 60 * 60 * 60 * 24
         return Jwts.builder()
             .subject(userEntity.phoneNumber)
@@ -53,4 +55,9 @@ class JwtUtils(
             .signWith(secretKey())
             .compact()
     }
+
+    val userId = (SecurityContextHolder
+        .getContext()
+        .authentication
+        .principal as CustomUserDetails).id
 }

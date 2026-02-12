@@ -28,16 +28,16 @@ data class OrderEntity(
     val amount: Double,
 
     @Column(name = "created_at")
-    val createdAt: Long,
+    val createdAt: String,
 
     @Column(name = "updated_at")
-    val updatedAt: Long,
+    val updatedAt: String,
 
     @OneToMany
     @JoinColumn(
         name = "order_id", referencedColumnName = "id"
     )
-    val products: Set<OrderProductEntity> = hashSetOf(),
+    val products: Set<OrderProductEntity> = mutableSetOf(),
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "order_result_id")

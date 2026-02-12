@@ -25,6 +25,7 @@ class CustomUserDetailService(
     private fun mapFromEntity(userEntity: UserEntity) : CustomUserDetails {
         return CustomUserDetails(
             id = userEntity.id,
+            name = userEntity.name,
             username = userEntity.phoneNumber,
             password = userEntity.password,
             /*authorities = User.builder().username(userEntity.phoneNumber).password(userEntity.password).roles("USER").build().authorities*/

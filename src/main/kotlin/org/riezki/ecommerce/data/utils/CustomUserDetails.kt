@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails
 
 data class CustomUserDetails(
     val id: Int = 0,
+    val name: String = "",
     private val username: String = "",
     private val password: String = "",
     private val authorities: Collection<GrantedAuthority> = emptyList()

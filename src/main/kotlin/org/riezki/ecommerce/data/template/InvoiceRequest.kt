@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
 data class InvoiceRequest(
     val externalId: String = "external_id-1",
-    val amount: Int = 20000,
+    val amount: Long = 20000,
     val description: String = "Invoice demo #123",
     val invoiceDuration: Long = 86400L,
     val customer: Customer = Customer(),

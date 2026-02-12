@@ -14,5 +14,5 @@ data class OrderResultEntity(
     val paymentUrl: String,
 
     @Column(name = "expired_at")
-    val expiredAt: Long
+    val expiredAt: String
 )
